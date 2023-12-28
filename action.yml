@@ -3,7 +3,7 @@ author: David G. Moore, Jr., <david@dgmjr.io>
 description: Clones and checks out the specified branch
 
 branding:
-  icon: file-plus
+  icon: git-pull-request
   color: green
 
 inputs:
