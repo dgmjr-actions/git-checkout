@@ -34,7 +34,7 @@ runs:
     - id: git-clone
       name: Clone the branch
       run: |
-        $repository = ${{ inputs.repository }}
-        $repository = $repository -like "https://github.com/*" ? $repository : "https://github.com/$repository"
-        git clone -b ${{ inputs.branch }} $repository ${{ inputs.path }}
+        $repository = "${{ inputs.repository }}"
+        $repository = $repository -like "https://github.com/*" ? "$repository" : "https://github.com/$repository"
+        git clone -b ${{ inputs.branch }} "$repository" ${{ inputs.path }}
       shell: pwsh
