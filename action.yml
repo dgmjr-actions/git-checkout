@@ -7,7 +7,7 @@ branding:
   color: green
 
 inputs:
-  git-token:
+  token:
     type: string
     required: true
   branch:
@@ -18,7 +18,7 @@ inputs:
     type: string
     required: true
     default: ${{ github.repository }}
-  directory:
+  path:
     type: string
     required: false
     default: .
@@ -30,8 +30,8 @@ runs:
     name: GH Login With Token
     uses: dgmjr-actions/gh-login-with-token@main
     with:
-      git-token: ${{ inputs.git-token }}
+      git-token: ${{ inputs.token }}
     - git-clone
     name: Clone the branch
-    run: git clone -b ${{ inputs.branch }} ${{ inputs.directory }}
+    run: git clone -b ${{ inputs.branch }} ${{ inputs.path }}
     shell: pwsh
