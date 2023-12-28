@@ -8,30 +8,30 @@ branding:
 
 inputs:
   token:
-    type: string
     required: true
+    description: GitHub Token
   branch:
-    type: string
     required: false
     default: main
+    description: Branch to clone
   repository:
-    type: string
     required: true
     default: ${{ github.repository }}
+    description: Repository to clone
   path:
-    type: string
     required: false
     default: .
+    description: Path to clone to
 
 runs:
   using: composite
   steps:
-    - git-checkout-branch
-    name: GH Login With Token
-    uses: dgmjr-actions/gh-login-with-token@main
-    with:
-      git-token: ${{ inputs.token }}
-    - git-clone
-    name: Clone the branch
-    run: git clone -b ${{ inputs.branch }} ${{ inputs.path }}
-    shell: pwsh
+    - id: git-checkout-branch
+      name: GH Login With Token
+      uses: dgmjr-actions/gh-login-with-token@main
+      with:
+        git-token: ${{ inputs.token }}
+    - id: git-clone
+      name: Clone the branch
+      run: git clone -b ${{ inputs.branch }} ${{ inputs.path }}
+      shell: pwsh
