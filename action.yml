@@ -1,0 +1,37 @@
+name: git clone/checkout
+author: David G. Moore, Jr., <david@dgmjr.io>
+description: Clones and checks out the specified branch
+
+branding:
+  icon: file-plus
+  color: green
+
+inputs:
+  git-token:
+    type: string
+    required: true
+  branch:
+    type: string
+    required: false
+    default: main
+  repository:
+    type: string
+    required: true
+    default: ${{ github.repository }}
+  directory:
+    type: string
+    required: false
+    default: .
+
+runs:
+  using: composite
+  steps:
+    - git-checkout-branch
+    name: GH Login With Token
+    uses: dgmjr-actions/gh-login-with-token@main
+    with:
+      git-token: ${{ inputs.git-token }}
+    - git-clone
+    name: Clone the branch
+    run: git clone -b ${{ inputs.branch }} ${{ inputs.directory }}
+    shell: pwsh
