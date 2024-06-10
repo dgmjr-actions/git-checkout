@@ -42,6 +42,6 @@ runs:
         }
         else
         {
-          Write-Warning -Message "The path \"${{ inputs.path }}\" already exists; skipping."
+          Write-Warning -Message "The path '${{ inputs.path }}' already exists; skipping."
         }
       shell: pwsh
