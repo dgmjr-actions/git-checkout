@@ -8,14 +8,15 @@ branding:
 
 inputs:
   token:
-    required: true
+    required: false
     description: GitHub Token
+    default: ${{ github.token }}
   branch:
     required: false
     default: main
     description: Branch to clone
   repository:
-    required: true
+    required: false
     default: ${{ github.repository }}
     description: Repository to clone
   path:
